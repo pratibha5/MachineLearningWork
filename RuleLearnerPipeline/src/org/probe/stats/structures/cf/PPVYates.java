@@ -2,11 +2,11 @@
  * @(#)FreqBasedYates.java    1.2 2002/11/21
  */
 
-package structures.cf;
+package org.probe.stats.structures.cf;
 
-import data.dataset.DataModel;
-import structures.learner.attribute.LearnerAttribute;
-import rule.Rule;
+import org.probe.data.DataModel;
+import  org.probe.stats.structures.learner.attribute.LearnerAttribute;
+import org.probe.rule.Rule;
 
 /**
  * A certainty factor based on Quinlan (1987), normalized for asymmetric

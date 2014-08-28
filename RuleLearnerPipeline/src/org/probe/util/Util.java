@@ -3,14 +3,13 @@ package org.probe.util;
 //import java.util.ArrayList;
 import java.io.*;
 
-//import parameters.algorithm.WEKAParameter;
-import org.probe.data.discretize.Discretizers;
-import data.dataset.*;
+import javax.management.InstanceNotFoundException;
 
-//import corefiles.structures.data.dataset.attribute.*;
-//import corefiles.structures.results.Predictions.BayesPrediction;
-//import weka.classifiers.Evaluation;
-//import weka.classifiers.evaluation.NominalPrediction;
+import org.probe.data.dataset.AttributeDoesNotExistException;
+import org.probe.data.DataModel;
+import org.probe.data.DefaultDataModel;
+import org.probe.data.discretize.Discretizers;
+
 import weka.core.Attribute;
 import weka.core.FastVector;
 import weka.core.Instance;
@@ -30,7 +29,7 @@ public class Util {
 					System.err.println("ERROR!!! Sample attribute retained!");
 					System.exit(300);
 				}
-				data.dataset.Attribute attr = trainData
+				org.probe.data.dataset.Attribute attr = trainData
 						.attribute(wAtt.name());
 				if (attr.hasContinuousValues()) {
 					if (uD) {
@@ -101,15 +100,15 @@ public class Util {
 		return inst[0];
 	}
 
-	public static void discDataModels(DataModel trn, DataModel tst, int meth,
+	public static void discDataModels(DefaultDataModel trn, DefaultDataModel tst, int meth,
 			double methVal) throws AttributeDoesNotExistException {
-		DataModel[] sets = new DataModel[2];
+		DefaultDataModel[] sets = new DefaultDataModel[2];
 		sets[0] = trn;
 		sets[1] = tst;
 		discDataModels(sets, meth, methVal);
 	}
 
-	public static void discDataModels(DataModel[] dats, int meth, double methVal) throws AttributeDoesNotExistException {
+	public static void discDataModels(DefaultDataModel[] dats, int meth, double methVal) throws AttributeDoesNotExistException {
 		if (dats[0].numContinuousAttributes() > 0) {
 			Discretizers d = new Discretizers();
 			d.setMehtod(meth, methVal);
@@ -126,7 +125,7 @@ public class Util {
 		}
 	}
 
-	public static void discDataModelsWithoutTrim(DataModel[] dats, int meth,
+	public static void discDataModelsWithoutTrim(DefaultDataModel[] dats, int meth,
 			double methVal) throws AttributeDoesNotExistException {
 		Discretizers d = new Discretizers();
 		d.setMehtod(meth, methVal);
@@ -137,7 +136,7 @@ public class Util {
 			dats[i].setDiscretization(pts, dats[0]);
 	}
 
-	public static void discDataModel(DataModel dats, int meth, double methVal) {
+	public static void discDataModel(DefaultDataModel dats, int meth, double methVal) {
 		Discretizers d = new Discretizers();
 		d.setMehtod(meth, methVal);
 		d.setData(dats);
@@ -146,7 +145,7 @@ public class Util {
 		dats.removeTrivialAttributes();
 	}
 
-	public static void discDataModelWithoutTrim(DataModel dats, int meth,
+	public static void discDataModelWithoutTrim(DefaultDataModel dats, int meth,
 			double methVal) {
 		Discretizers d = new Discretizers();
 		d.setMehtod(meth, methVal);
@@ -155,7 +154,7 @@ public class Util {
 		dats.setDiscretization(pts);
 	}
 
-	public static Instances[] createInstances(DataModel train, DataModel test,
+	public static Instances[] createInstances(DefaultDataModel train, DefaultDataModel test,
 			boolean uD, int[] vals) throws AttributeDoesNotExistException,
 			InstanceNotFoundException {
 		Instances[] nIs = new Instances[2];

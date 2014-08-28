@@ -8,7 +8,7 @@ package org.probe.util;
 
 import java.util.Vector;
 
-import data.dataset.Attribute;
+import org.probe.data.dataset.Attribute;
 //import data.dataset.BayesAttribute;
 
 /**

@@ -1,8 +1,8 @@
 /* @(#)AttributeNameComaprator.java */
 
-package structures.learner.attribute;
+package org.probe.stats.structures.learner.attribute;
 
-import structures.learner.attribute.LearnerAttribute;
+import org.probe.stats.structures.learner.attribute.LearnerAttribute;
 
 /**
  * AttributeComparator orders Attributes based on the alphabetical order of

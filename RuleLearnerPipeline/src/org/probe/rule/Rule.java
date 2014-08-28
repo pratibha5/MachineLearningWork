@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import org.probe.stats.structures.cf.CertaintyFactor;
 
-import data.dataset.*;
+import org.probe.data.*;
 
 import org.probe.stats.structures.learner.attribute.*;
 //import structures.learner.rule.*;

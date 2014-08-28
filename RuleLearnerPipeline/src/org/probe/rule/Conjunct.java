@@ -6,7 +6,9 @@ package org.probe.rule;
 
 import java.util.Scanner;
 import java.io.*;
-import data.dataset.*;
+
+import org.probe.data.DataModel;
+import org.probe.data.dataset.*;
 import org.probe.stats.structures.learner.attribute.*;
 
 /**

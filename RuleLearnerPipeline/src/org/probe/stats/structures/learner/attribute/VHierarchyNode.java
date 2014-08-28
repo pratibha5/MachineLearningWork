@@ -215,7 +215,7 @@ public class VHierarchyNode extends DefaultMutableTreeNode implements
 
 		while (tok.hasMoreTokens()) {
 			String add = tok.nextToken();
-			addValue(new SetNode(this.attName, add));
+			//addValue(new SetNode(this.attName, add));
 		}
 	}
 

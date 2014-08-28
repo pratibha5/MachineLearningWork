@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.probe.data.dataset.Attribute;
-import org.probe.data.dataset.DefaultDataModel;
+import org.probe.data.DefaultDataModel;
 
-import data.dataset.IncompatibleDatatypeException;
+import org.probe.data.dataset.IncompatibleDatatypeException;
 
 import org.probe.stats.structures.learner.attribute.VHierarchyNode;
 import org.probe.util.Util;

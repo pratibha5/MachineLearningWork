@@ -2,7 +2,7 @@ package org.probe.stats.structures.learner.SAL;
 
 import java.util.ArrayList;
 
-import data.dataset.*;
+import org.probe.data.dataset.*;
 import org.probe.stats.structures.learner.attribute.LearnerAttribute;
 import org.probe.stats.structures.learner.attribute.VHierarchyNode;
 import org.probe.rule.Conjunct;

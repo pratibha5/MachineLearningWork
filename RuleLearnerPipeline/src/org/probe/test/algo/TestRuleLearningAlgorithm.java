@@ -1,13 +1,12 @@
 package org.probe.test.algo;
 
 import org.junit.Test;
-import org.probe.algo.rule.ID3RuleLearner;
+import org.probe.algo.rule.LearnerParameters;
 import org.probe.algo.rule.RuleLearner;
-import org.probe.data.DataModel;
+import org.probe.algo.rule.SALRuleLearner;
+import org.probe.data.DefaultDataModel;
 import org.probe.data.FileDataManager;
 import org.probe.data.FileType;
-import org.probe.data.discretize.Discretizer;
-import org.probe.data.discretize.EqualFrequencyBinGenerator;
 import org.probe.rule.RuleModel;
 
 public class TestRuleLearningAlgorithm {
@@ -17,35 +16,31 @@ public class TestRuleLearningAlgorithm {
 		FileDataManager dataManager = new FileDataManager();
 		dataManager.loadFromFile("Test//data.txt", FileType.TSV.getSeparator());
 		
-		DataModel dataModel = dataManager.getDataModel();
-		
-		RuleLearner ruleLearner = new ID3RuleLearner();
+		DefaultDataModel dataModel = dataManager.getDataModel();
+		LearnerParameters learnerParams= dataManager.getLearnerparams();
+		SALRuleLearner ruleLearner = new SALRuleLearner();
 		ruleLearner.setDataModel(dataModel);
+		ruleLearner.setLearnerparams(learnerParams);
 		ruleLearner.runAlgo();
+		if (ruleLearner.hasLearntRules()){
+			RuleModel ruleModel = ruleLearner.getRuleModel();
+			System.out.println("Learned " + ruleModel.getRules().size() + " rules\n");
+			StringBuffer buf = new StringBuffer();
+			buf.append(ruleModel.toString() + "\n");
+			System.out.println(buf);
+		}
 		
-		RuleModel ruleModel = ruleLearner.getRuleModel();
-		
-		//assert
-		//ruleModel.containsField("");
 	}
 	
 	public void test2() throws Exception{
 		FileDataManager dataManager = new FileDataManager();
 		dataManager.loadFromFile("Test//sampleLearningData.csv", FileType.CSV.getSeparator());
 		
-		DataModel dataModel = dataManager.getDataModel();
-		
-		Discretizer discretizer = new Discretizer(new EqualFrequencyBinGenerator());
-		DataModel discDataModel = discretizer.discretize(dataModel);
-		//discDataModel.print();
-		
-		RuleLearner ruleLearner = new ID3RuleLearner();
-		ruleLearner.setDataModel(discDataModel);
+		DefaultDataModel dataModel = dataManager.getDataModel();
+		RuleLearner ruleLearner = new SALRuleLearner();
+		ruleLearner.setDataModel(dataModel);
 		ruleLearner.runAlgo();
 		
 		RuleModel ruleModel = ruleLearner.getRuleModel();
-		
-		//assert
-		//ruleModel.containsField("");
 	}
 }

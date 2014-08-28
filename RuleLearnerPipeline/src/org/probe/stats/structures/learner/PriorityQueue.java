@@ -1,4 +1,4 @@
-package structures.learner;
+package org.probe.stats.structures.learner;
 
 import java.util.ArrayList;
 

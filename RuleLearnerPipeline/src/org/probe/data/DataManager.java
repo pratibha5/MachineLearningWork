@@ -1,11 +1,10 @@
 package org.probe.data;
 
-import java.util.List;
-
-import org.probe.data.fold.FoldGenerator;
+import org.probe.algo.rule.LearnerParameters;
+import org.probe.data.DataModel;
 
 public interface DataManager {
 	DataModel getDataModel();
 
-	List<DataModel> createFolds(FoldGenerator foldGenerator);
+	LearnerParameters getLearnerparams();
 }

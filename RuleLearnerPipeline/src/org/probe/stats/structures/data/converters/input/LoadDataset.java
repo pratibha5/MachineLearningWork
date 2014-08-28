@@ -3,9 +3,8 @@ package org.probe.stats.structures.data.converters.input;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.probe.data.dataset.DefaultDataModel;
-
-import data.dataset.*;
+import org.probe.data.DefaultDataModel;
+import org.probe.data.dataset.IncompatibleDatatypeException;
 
 public interface LoadDataset {
 	public DefaultDataModel loadData() throws IncompatibleDatatypeException,

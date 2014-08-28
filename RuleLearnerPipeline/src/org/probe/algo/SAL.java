@@ -13,10 +13,10 @@ import org.probe.algo.rule.LearnerParameters;
 import org.probe.algo.rule.RuleGenerator;
 import org.probe.stats.structures.cf.CertaintyFactor;
 import org.probe.stats.structures.cf.PValueRight;
-
+import org.probe.data.DataModel;
+import org.probe.data.DefaultDataModel;
 // import structures.constraints.Constraint;
-import data.dataset.*;
-
+import org.probe.data.dataset.*;
 import org.probe.stats.structures.learner.HeapPriorityQueue;
 import org.probe.stats.structures.learner.PriorityQueue;
 import org.probe.stats.structures.learner.RuleData;
@@ -91,7 +91,7 @@ public class SAL implements RuleGenerator {
 	private ArrayList<RuleData> goodRules;
 	private LearnerParameters parameters;
 	private int nTrainCovered;
-	private DataModel trainData;
+	private DefaultDataModel trainData;
 
 	/**
 	 * Holds all attribute-value pairs. A marker counter is an extension of
@@ -127,7 +127,6 @@ public class SAL implements RuleGenerator {
 	public SAL(AttributeList al, LearnerParameters p) {
 		attList = al;
 		setParameters(p);
-		// attList.computeInfoGains(); PG20040215
 
 		init();
 
@@ -167,7 +166,7 @@ public class SAL implements RuleGenerator {
 		return nRules;
 	}
 
-	public void setDataModel(DataModel trnData) {
+	public void setDataModel(DefaultDataModel trnData) {
 		trainData = trnData;
 	}
 
@@ -243,13 +242,13 @@ public class SAL implements RuleGenerator {
 
 		// Create the data structures
 		conjunctCounters = createConjunctArray(target); // holds all attribute-value pairs
-		//dataCounters = createDataArray(trainData, target); // holds data + extra info
+		dataCounters = createDataArray(trainData, target); // holds data + extra info
 		targetValCounters = createTveArray(target); // holds all target conjuncts
 
 		 //Create links between the data and the conjuncts, filling the arrays 
 		 // conjunctCounters, dataCounters, and classValCounters (previously 
 		 // called mcArray, sdeArray, tvArray).
-		//createLinks();
+		createLinks();
 
 		// Initialize the counters
 		//clearStructureInfo(conjunctCounters, dataCounters);
@@ -507,13 +506,13 @@ public class SAL implements RuleGenerator {
 
 		// If there are good rules that were removed from the beam, re-cover
 		// the data that they match.
-		/*for (int x = 0; x < goodRules.size(); x++) {
+		for (int x = 0; x < goodRules.size(); x++) {
 			ruleD = (RuleData) goodRules.get(x);
 			if (ruleD.shouldUseIndStr) {
 				nTrainCovered += ruleD.getInductiveStrength(trainData);
 				ruleD.cover(trainData);
 			}
-		}*/
+		}
 				
 		// Find good rules on the beam
 		for (int x = 0; x < origList.size(); x++) {
@@ -586,8 +585,7 @@ public class SAL implements RuleGenerator {
 		rule.setTrainFalsePos(fp);
 		rule.setTrainNeg(totN);
 		rule.setTrainPos(totP);
-		rule.setCf(CertaintyFactor.getCfArray()[parameters.getCfMethod()], 
-				attList.getTargetAttribute(), trainData);
+		rule.setCf(CertaintyFactor.getCfArray()[parameters.getCfMethod()],attList.getTargetAttribute(), trainData);
 		rule.setWorth(attList.getTargetAttribute());
 
 		nRules++;
@@ -903,11 +901,6 @@ public class SAL implements RuleGenerator {
 			}
 			/* ***************************/
 			rule.setIndex(ruleD.rule.getIndex());
-			rule.isPriorRule = ruleD.rule.isPriorRule;
-			if (rule.isPriorRule) {
-				nRetainedRules++;
-				transferredAtts.addAll(rule.getLhs().getAttributes());
-			}
 			model.add(rule);
 		}
 		

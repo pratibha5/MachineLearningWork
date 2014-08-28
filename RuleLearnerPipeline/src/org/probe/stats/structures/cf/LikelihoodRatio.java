@@ -3,7 +3,7 @@
  */
 package org.probe.stats.structures.cf;
 
-import data.dataset.DataModel;
+import org.probe.data.DataModel;
 import org.probe.stats.structures.learner.attribute.LearnerAttribute;
 import org.probe.rule.Rule;
 

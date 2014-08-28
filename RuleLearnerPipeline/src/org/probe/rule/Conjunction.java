@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.io.*;
 import java.util.Scanner;
-import data.dataset.*;
+
+import org.probe.data.dataset.*;
+import org.probe.data.DataModel;
+import org.probe.data.DefaultDataModel;
 import org.probe.stats.structures.learner.attribute.*;
 //import structures.learner.rule.*;
 

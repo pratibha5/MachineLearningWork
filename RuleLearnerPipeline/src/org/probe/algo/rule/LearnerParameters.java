@@ -3,9 +3,7 @@ package org.probe.algo.rule;
 import org.probe.data.discretize.Discretizers;
 import org.probe.data.discretize.supervised.EBD;
 import org.probe.stats.structures.cf.CertaintyFactor;
-import org.probe.stats.structures.cr.ConflictResolver;
-import data.dataset.DataModel;
-import org.probe.util.RuleList;
+import org.probe.data.DefaultDataModel;
 import org.probe.util.*;
 
 /**
@@ -20,7 +18,7 @@ public class LearnerParameters implements Cloneable {
 	private int numFolds = 10; // -CV #
 	private boolean genTestSet = false; // -genTST [n]
 	private double percentTestSet = 30; // -genTST #
-	public DataModel trainData, testData, sourceData;
+	public DefaultDataModel trainData, testData, sourceData;
 	public long cvRandSeed = 1;
 
 	// Running parameters
@@ -401,7 +399,7 @@ public class LearnerParameters implements Cloneable {
 					|| options[i].equalsIgnoreCase("-inftype")
 					|| options[i].equalsIgnoreCase("-infer") 
 					|| options[i].equalsIgnoreCase("-inference")
-					|| options[i].equalsIgnoreCase("-confres")) {
+					|| options[i].equalsIgnoreCase("-confres")) {/*
 				// Evidence gathering (conflict resolution or inference) function
 				if ((i + 1 < options.length) && (options[i + 1].indexOf("-") < 0)) {
 					try {
@@ -426,12 +424,10 @@ public class LearnerParameters implements Cloneable {
 					}
 					i++;
 				} else {
-					//System.err.println("Specify an integer after '" + options[i]
-					//	+ "' to indicate the type of inference function");
 					throw new IncorrectParameterException(options[i], options[i+1], 
 							"integer between 0 and " + (ConflictResolver.getCRArray().length - 1));
 				}
-			} else if (options[i].equalsIgnoreCase("-d")
+			*/} else if (options[i].equalsIgnoreCase("-d")
 					|| options[i].equalsIgnoreCase("-disc")) {
 				// Discretization method
 				if ((i + 1 < options.length) && (options[i + 1].indexOf("-") < 0)) {
@@ -800,9 +796,9 @@ public class LearnerParameters implements Cloneable {
 		buf.append("Max FP coverage: " + (maxFP >=0 ? maxFP : "--") + "\n");
 		buf.append("Min TP coverage: " + minTP + "\n");
 		buf.append("Inductive strengthening: " + indStrengthening + "\n");
-		buf.append("Inference type: "
+		/*buf.append("Inference type: "
 				+ ConflictResolver.getCRArray()[inferenceType].toString() 
-				+ " (" + inferenceType + ")\n");
+				+ " (" + inferenceType + ")\n");*/
 		buf.append("Beam width: " + beamWidth + "\n");
 		buf.append("Specialize satisfactory rules: " + specializeGoodRules + "\n");
 		buf.append("Validation method: ");

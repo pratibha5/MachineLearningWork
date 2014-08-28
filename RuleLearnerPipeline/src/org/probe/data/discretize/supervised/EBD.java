@@ -2,21 +2,15 @@ package org.probe.data.discretize.supervised;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-//import java.io.File;
-//import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-//import java.io.OutputStream;
-//import java.io.PrintStream;
 import java.text.DecimalFormat;
-//import java.text.NumberFormat;
 import java.util.ArrayList;
-//import java.util.Vector;
 
+import org.probe.data.DataModel;
 import org.probe.data.discretize.Discretizer;
-import data.dataset.*;
+import org.probe.data.dataset.*;
 import org.probe.util.*;
-//import corefiles.structures.data.dataset.attribute.*;
 
 /**
  * Uses a K2 Score to calculate the best split There is no maximum bin parameter
@@ -43,14 +37,14 @@ public class EBD extends Discretizer {
 	 * Blank Constructor for EBD Discretization
 	 * 
 	 */
-	/*
-	 public EBD() {
-		//data = null;
+	
+	/* public EBD() {
+		data = null;
 		partitions = new double[0][0];
 		prior = 1;
 		cStructPrior = 0;
-	}
-	*/
+	}*/
+	
 
 	/**
 	 * @param d

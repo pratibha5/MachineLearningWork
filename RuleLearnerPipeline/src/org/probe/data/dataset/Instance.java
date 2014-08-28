@@ -1,12 +1,14 @@
 package org.probe.data.dataset;
 
+import org.probe.data.DataModel;
+
 
 public class Instance {
 	private String sampleName;
 
 	private double[] values;
 
-	private DefaultDataModel refDataModel;
+	private DataModel refDataset;
 
 	private boolean covered;
 
@@ -23,14 +25,14 @@ public class Instance {
 	}
 
 	public double classValue() {
-		return values[refDataModel.classAttIndex()];
+		return values[refDataset.classAttIndex()];
 	}
 
 	public Attribute attribute(int a) throws AttributeDoesNotExistException {
-		return refDataModel.attribute(a);
+		return refDataset.attribute(a);
 	}
 
 	public int classIndex() {
-		return refDataModel.classAttIndex();
+		return refDataset.classAttIndex();
 	}
 }

@@ -6,7 +6,8 @@ package org.probe.stats.structures.learner;
 
 import java.util.ArrayList;
 
-import data.dataset.*;
+import org.probe.data.*;
+import org.probe.data.dataset.InstanceNotFoundException;
 import org.probe.rule.Rule;
 
 /**

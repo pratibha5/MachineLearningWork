@@ -2,11 +2,11 @@
  * @(#)FreqBased.java    1.2 2002/11/21
  */
 
-package structures.cf;
+package org.probe.stats.structures.cf;
 
-import data.dataset.DataModel;
-import structures.learner.attribute.LearnerAttribute;
-import rule.*;
+import org.probe.data.DataModel;
+import org.probe.stats.structures.learner.attribute.LearnerAttribute;
+import org.probe.rule.*;
 
 /**
  * A certainty factor based on Positive Predictive Value,

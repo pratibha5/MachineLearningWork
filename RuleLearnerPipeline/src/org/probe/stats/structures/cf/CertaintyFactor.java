@@ -4,9 +4,7 @@
 
 package org.probe.stats.structures.cf;
 
-import java.util.ArrayList;
-
-import data.dataset.DataModel;
+import org.probe.data.DataModel;
 import org.probe.stats.structures.learner.attribute.LearnerAttribute;
 import org.probe.rule.Rule;
 
@@ -89,19 +87,9 @@ public abstract class CertaintyFactor {
 		cfFunctions[1] = new PPV();
 		cfFunctions[2] = new PPVYates();
 		cfFunctions[3] = new PPVNormalized();
-		// cfFunctions[3] = new SignalToNoise();
 		cfFunctions[4] = new LaplaceEstimate();
 		cfFunctions[5] = new LaplaceExtended();	
 		cfFunctions[6] = new LaplaceDepth();
-		// cfFunctions[3] = new Jaccard();
-		// cfFunctions[0] = new FMeasure();
-		
-		// TODO: add p-value after, we figure out how to deal with
-		// the cutoff. Unlike other CFs, smaller p-values are better.
-		// This may actually exist in tandem with some other CF, so until we
-		// really know what's going on, don't muddle things.
-		//
-		// cfFunctions[0] = new PValueRight());
 
 		return cfFunctions;
 	}

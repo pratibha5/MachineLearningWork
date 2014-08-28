@@ -9,16 +9,16 @@ package org.probe.data.discretize;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.probe.data.discretize.supervised.D2S;
+import org.probe.data.DataModel;
 import org.probe.data.discretize.supervised.EBD;
 import org.probe.data.discretize.supervised.ErrorBased;
-import org.probe.data.discretize.supervised.FayyadIraniEntropy;
-import org.probe.data.discretize.supervised.MODL;
 import org.probe.data.discretize.supervised.OneR;
 import org.probe.data.discretize.unsupervised.EqualFrequency;
 import org.probe.data.discretize.unsupervised.EqualWidth;
 import org.probe.stats.structures.data.converters.input.TabCsvDataLoader;
-import data.dataset.*;
+
+import org.probe.data.dataset.*;
+
 import org.probe.util.MathUtil;
 
 /**
@@ -81,7 +81,7 @@ public class Discretizers {
 		case ErrorBasedS:
 			dm = new ErrorBased(methodParam);
 			break;
-		case D2S:
+/*		case D2S:
 			dm = new D2S(data);
 			break;
 		case FayaadMDLS:
@@ -93,7 +93,7 @@ public class Discretizers {
 			break;
 		case MODL:
 			dm = new MODL(data);
-			break;
+			break;*/
 		default:
 			dm = new EBD(data, 1);
 		}

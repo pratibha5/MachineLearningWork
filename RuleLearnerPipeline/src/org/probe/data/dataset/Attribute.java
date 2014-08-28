@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 //import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.probe.data.DefaultDataModel;
 import org.probe.stats.structures.learner.attribute.DiscreteNode;
 import org.probe.stats.structures.learner.attribute.IntervalNode;
 import org.probe.stats.structures.learner.attribute.LearnerAttribute;

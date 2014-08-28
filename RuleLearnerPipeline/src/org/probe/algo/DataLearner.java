@@ -1,8 +1,7 @@
 package org.probe.algo;
-
-import org.probe.data.dataset.DataModel;
+import org.probe.data.DefaultDataModel;
 
 public interface DataLearner {
-	void setDataModel(DataModel dataModel);
+	void setDataModel(DefaultDataModel dataModel);
 	void runAlgo() throws Exception;
 }

@@ -13,9 +13,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.probe.data.dataset.DefaultDataModel;
-
-import data.dataset.*;
+import org.probe.data.DataModel;
+import org.probe.data.DefaultDataModel;
+import org.probe.data.dataset.Attribute;
+import org.probe.data.dataset.AttributeDoesNotExistException;
+import org.probe.stats.structures.learner.attribute.AttributeNameComparator;
+import org.probe.stats.structures.learner.attribute.DiscreteNode;
+import org.probe.stats.structures.learner.attribute.HNode;
+import org.probe.stats.structures.learner.attribute.IntervalNode;
+import org.probe.stats.structures.learner.attribute.LearnerAttribute;
+import org.probe.stats.structures.learner.attribute.LearnerAttributeType;
+import org.probe.stats.structures.learner.attribute.VHierarchyNode;
+import org.probe.stats.structures.learner.attribute.AttributeList.KBest;
+import org.probe.data.dataset.*;
 
 /**
  * A list of attributes.
@@ -324,7 +334,7 @@ public class AttributeList extends ArrayList {
 
 		// from examineData()
 		LearnerAttribute a;
-		for (int i = 0; i <data.numAttributes(); i++) {
+		for (int i = 0; i < data.numAttributes(); i++) {
 			Attribute att = data.attribute(i);
 			a = new LearnerAttribute(att.name(), i, 
 					(att.hasContinuousValues() && att.wasContinuous() ? 
@@ -336,7 +346,8 @@ public class AttributeList extends ArrayList {
 				a.setUse(a.ID);
 			else
 				a.setUse(a.INPUT);
-			a.setHierarchy(att.hierarchy());
+				a.setHierarchy(att.hierarchy());
+			
 			add(a);
 		}
 	}
@@ -468,11 +479,11 @@ public class AttributeList extends ArrayList {
 						buf.append("\t" + df.format(igain));
 				}
 				buf.append("\t ");
-				int count = att.countCorrectPredictions(predictions);
+				int count = 0 ; //att.countCorrectPredictions(predictions);
 				if (count > 0)
 					buf.append(count);
 				buf.append("\t ");
-				count = att.countIncorrectPredictions(predictions);
+				count = 0; //att.countIncorrectPredictions(predictions);
 				if (count > 0)
 					buf.append(count);
 				buf.append("\n");
